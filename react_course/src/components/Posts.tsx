@@ -7,10 +7,23 @@ interface PostCardProps {
 
 const PostsData: Array<PostCardProps> = [ 
   {body: "Body test", title: "Title test"},
+  {body: "Some body text", title: "Some title text"},
+  {body: "Body test", title: "Title test"},
+  {body: "Some body text", title: "Some title text"},
+  {body: "Body test", title: "Title test"},
+  {body: "Some body text", title: "Some title text"},
+  {body: "Body test", title: "Title test"},
+  {body: "Some body text", title: "Some title text"},
+  {body: "Body test", title: "Title test"},
   {body: "Some body text", title: "Some title text"}
  ]
 
 const Posts = () => {
+
+    const renderUI = PostsData && PostsData.length > 0 
+      ? PostsData.map(card => <PostCard key={card.title} title={card.title} body={card.body}/>)
+      : (<p style={{margin:"0 auto", color: "red"}}>There's no posts yet</p>)
+
     return <div className="container">
     <h2>
       Welcome to site
@@ -22,7 +35,7 @@ const Posts = () => {
     </div>
 
     <section className="posts">
-      {PostsData.map(card=> <PostCard title={card.title} body={card.body}/>)}
+      {renderUI}
     </section>
   </div>
 }
