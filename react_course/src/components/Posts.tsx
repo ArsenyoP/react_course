@@ -8,19 +8,20 @@ interface PostCardProps {
 }
 
 const PostsData: Array<PostCardProps> = [ 
-  {body: "Body test", title: "Title test", id:1},
-  {body: "Body test", title: "Title test", id:2},
-  {body: "Body test", title: "Title test", id:3},
-  {body: "Body test", title: "Title test", id:4},
-  {body: "Body test", title: "Title test", id:5},
+  {body: "Body test", title: "First Title test", id:1},
+  {body: "Body test", title: "Second Title test", id:2},
+  {body: "Body test", title: "Third Title test", id:3},
+  {body: "Body test", title: "Fourth Title test", id:4},
+  {body: "Body test", title: "Fifth Title test", id:5},
  ]
 
 const Posts = () => {
     const [search, setSearch] = useState("");
-    console.log("--change")
 
-    const renderUI = PostsData && PostsData.length > 0 
-      ? PostsData.map(card => <PostCard key={card.id} title={card.title} body={card.body} id={card.id}/>)
+    const filteredCards = PostsData.filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
+
+    const renderUI = filteredCards && filteredCards.length > 0 
+      ? filteredCards.map(card => <PostCard key={card.id} title={card.title} body={card.body} id={card.id}/>)
       : (<p style={{margin:"0 auto", color: "red"}}>There's no posts yet</p>)
 
 
