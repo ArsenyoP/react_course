@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import PostCard from "./PostCard"
 
-interface PostCardProps {
+
+interface Post {
   id: number;
   title: string;
   body: string;
 }
 
-const PostsData: Array<PostCardProps> = [ 
+
+
+const PostsData: Array<Post> = [ 
   {body: "Body test", title: "First Title test", id:1},
   {body: "Body test", title: "Second Title test", id:2},
   {body: "Body test", title: "Third Title test", id:3},
@@ -21,7 +24,7 @@ const Posts = () => {
     const filteredCards = PostsData.filter(x => x.title.toLowerCase().includes(search.toLowerCase()))
 
     const renderUI = filteredCards && filteredCards.length > 0 
-      ? filteredCards.map(card => <PostCard key={card.id} title={card.title} body={card.body} id={card.id}/>)
+      ? filteredCards.map(card => <PostCard key={card.id} title={card.title} body={card.body} id={card.id} titleClick={setSearch}/>)
       : (<p style={{margin:"0 auto", color: "red"}}>There's no posts yet</p>)
 
 

@@ -1,12 +1,8 @@
-interface PostCardProps {
-    id: number
-    title: string;
-    body: string;
-  }
+import type { PostCardProps } from "../Interfaces/Interfaces"
 
-const PostCard = ({ title, body, id }: PostCardProps) => {
+const PostCard = ({ title, body, id, titleClick }: PostCardProps) => {
     return <article className="post-card">
-        <h3>{title}</h3>
+        <h3 onClick={() => titleClick(title)}>{title}</h3>
         <p>{body}</p>
         <a href="#">Read more</a> 
         <h5>{id}</h5>
