@@ -1,28 +1,28 @@
+import React, { useState } from "react";
 import PostCard from "./PostCard"
 
 interface PostCardProps {
+  id: number;
   title: string;
   body: string;
 }
 
 const PostsData: Array<PostCardProps> = [ 
-  {body: "Body test", title: "Title test"},
-  {body: "Some body text", title: "Some title text"},
-  {body: "Body test", title: "Title test"},
-  {body: "Some body text", title: "Some title text"},
-  {body: "Body test", title: "Title test"},
-  {body: "Some body text", title: "Some title text"},
-  {body: "Body test", title: "Title test"},
-  {body: "Some body text", title: "Some title text"},
-  {body: "Body test", title: "Title test"},
-  {body: "Some body text", title: "Some title text"}
+  {body: "Body test", title: "Title test", id:1},
+  {body: "Body test", title: "Title test", id:2},
+  {body: "Body test", title: "Title test", id:3},
+  {body: "Body test", title: "Title test", id:4},
+  {body: "Body test", title: "Title test", id:5},
  ]
 
 const Posts = () => {
+    const [search, setSearch] = useState("");
+    console.log("--change")
 
     const renderUI = PostsData && PostsData.length > 0 
-      ? PostsData.map(card => <PostCard key={card.title} title={card.title} body={card.body}/>)
+      ? PostsData.map(card => <PostCard key={card.id} title={card.title} body={card.body} id={card.id}/>)
       : (<p style={{margin:"0 auto", color: "red"}}>There's no posts yet</p>)
+
 
     return <div className="container">
     <h2>
@@ -30,7 +30,10 @@ const Posts = () => {
     </h2>
 
     <div className="search-box">
-      <input type="text" placeholder="Search" className="search-input"/>
+      <input type="text" placeholder="Search" 
+      onChange={(e) => setSearch(e.target.value)}
+      value={search}
+       className="search-input"/>
       <button className="search-btn">Search</button>
     </div>
 
